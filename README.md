@@ -13,8 +13,8 @@ The differences between this example and the original example are:
 
 1. This code includes a _Common_ project that contains the `Message`
    and `Start` class definitions.
-1. The compiled JAR file from the _Common_ project is included in the
-   _lib_ folders of both the _HelloLocal_ and _HelloRemote_ projects.
+1. The _HelloLocal_ and _HelloRemote_ projects depend on the _Common_ project
+   and will automatically include its classes.
 1. The actor code in the _HelloLocal_ and _HelloRemote_ projects sends
    messages using the `Message` and `Start` classes. (Technically, `Start`
    is a case object, and `Message` is a case class.)
@@ -34,10 +34,9 @@ Running the Code
 
 Follow these steps to run the code:
 
-1. `cd` into the _HelloRemote_ directory.
-1. Type `sbt run` to start the remote actor system.
-1. In a separate terminal window, `cd` into the _HelloLocal_ directory.
-1. Type `sbt run` to start the local actor system.
+1. Open two(!) terminal windows, `cd` into the project root in both of them
+1. Type `sbt remote/run` in one window to start the remote actor system
+1. Type `sbt local/run` in the other window to start the local actor system
 
 When the local actor system starts, it will send an initial message
 to the remote actor system. The remote actor will send a reply through

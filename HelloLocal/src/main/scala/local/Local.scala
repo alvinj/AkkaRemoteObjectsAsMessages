@@ -14,13 +14,13 @@ object Local extends App {
 class LocalActor extends Actor {
 
   // create the remote actor
-  val remote = context.actorFor("akka://HelloRemoteSystem@127.0.0.1:5150/user/RemoteActor")
+  val remote = context.actorFor("akka.tcp://HelloRemoteSystem@127.0.0.1:5150/user/RemoteActor")
   var counter = 0
 
   def receive = {
     case Start =>
         remote ! Message("Hello from the LocalActor")
-    case Message(msg) => 
+    case Message(msg) =>
         println(s"LocalActor received message: '$msg'")
         if (counter < 5) {
             sender ! Message("Hello back to you")
